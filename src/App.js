@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-function App() {
+import HomeScreen from "./component/screens/HomeScreen";
+import TribeOfJudah from "./component/screens/TribeOfJudah";
+import Aparajita from "./component/screens/Aparajita";
+import ThisIsFate from "./component/screens/ThisIsFate";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    children: [
+      {
+        path: "/",
+        element: <HomeScreen />,
+      },
+      {
+        path: "/description/tribeofjudah",
+        element: <TribeOfJudah />,
+      },
+      {
+        path: "/description/aparajita",
+        element: <Aparajita />,
+      },
+      {
+        path: "/description/thisisfate",
+        element: <ThisIsFate />,
+      },
+    ],
+
+    // whenever you want to nest, you use children to nest
+  },
+]);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
-}
+};
 
 export default App;
